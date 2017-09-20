@@ -1,0 +1,9 @@
+﻿@page
+@model ASP_NET_Core_2_0.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+<h1>Products App</h1>
+<h2>Message is @Model.Message</h2>
+<p><a asp-page="./Products">All Products</a></p>
