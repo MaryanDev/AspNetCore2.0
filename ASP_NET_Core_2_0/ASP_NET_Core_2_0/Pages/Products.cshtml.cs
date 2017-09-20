@@ -11,14 +11,10 @@ using Newtonsoft.Json;
 
 namespace ASP_NET_Core_2_0.Pages
 {
-    public class ProductsModel : PageModel
+    public class ProductsModel : ProductPageModel
     {
-        private IHostingEnvironment _env;
-        private string _path;
-        public ProductsModel(IHostingEnvironment env)
+        public ProductsModel(IHostingEnvironment env) : base(env)
         {
-            _env = env;
-            _path = Path.Combine(_env.ContentRootPath, "Data\\products.json");
         }
 
         [BindProperty]
@@ -41,13 +37,5 @@ namespace ASP_NET_Core_2_0.Pages
             return RedirectToPage();
         }
 
-        private List<Product> GetProducts(Func<Product, bool>criteria = null )
-        {
-            if (criteria == null)
-            {
-                return JsonConvert.DeserializeObject<List<Product>>(System.IO.File.ReadAllText(_path));
-            }
-            return JsonConvert.DeserializeObject<List<Product>>(System.IO.File.ReadAllText(_path)).Where(criteria).ToList();
-        }
     }
 }
