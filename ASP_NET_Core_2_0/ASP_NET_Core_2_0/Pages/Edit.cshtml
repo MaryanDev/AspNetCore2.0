@@ -1,6 +1,27 @@
 ﻿@page "{id:int}"
-@model EditModel
+@model ASP_NET_Core_2_0.Pages.EditModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
   Layout = "_Layout";
 }
+<h1>Edit Product - @Model.Product.Id</h1>
+
+<form method="post">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <input asp-for="Product.Id" type="hidden"/>
+    <div>
+        <label asp-for="Product.Title"></label>
+        <div class="form-group">
+            <input class="form-control" asp-for="Product.Title" title="Current title is @Model.Product.Title" placeholder="@Model.Product.Title"/>
+            <span class="text-danger" asp-validation-for="Product.Title"></span>
+        </div>
+        <label asp-for="Product.Price"></label>
+        <div class="form-group">
+            <input class="form-control" asp-for="Product.Price" title="Current title is @Model.Product.Price" placeholder="@Model.Product.Price" />
+            <span class="text-danger" asp-validation-for="Product.Price"></span>
+        </div>
+    </div>
+    <div>
+        <button class="form-control btn btn-info" type="submit">Save</button>
+    </div>
+</form>

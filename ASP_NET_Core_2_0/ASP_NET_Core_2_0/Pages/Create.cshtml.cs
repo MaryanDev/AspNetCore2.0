@@ -7,30 +7,29 @@ using ASP_NET_Core_2_0.Services.Abstract;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
+using Microsoft.AspNetCore.Rewrite.Internal;
 
 namespace ASP_NET_Core_2_0.Pages
 {
-    public class EditModel : ProductPageModel
+    public class CreateModel : ProductPageModel
     {
-        public EditModel(IProductService productService) : base(productService)
+        public CreateModel(IProductService productService) : base(productService)
         {
-            
+                
         }
-        [BindProperty]
         public Product Product { get; set; }
-        public void OnGet(int id)
+        public void OnGet()
         {
-            Product = _productService.GetProducts(p => p.Id == id).FirstOrDefault();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(Product product)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            _productService.EditProduct(Product);
+            _productService.AddProduct(product);
+
             return RedirectToPage("./Products");
         }
     }

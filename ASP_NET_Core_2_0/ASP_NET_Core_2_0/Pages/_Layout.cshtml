@@ -1,12 +1,18 @@
-﻿<!DOCTYPE html>
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <environment names="Development">
+        <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    </environment>
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div>
+    <div class="col-md-4 col-md-push-4">
         @RenderBody()
     </div>
 </body>
